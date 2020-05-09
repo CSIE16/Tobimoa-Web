@@ -5,8 +5,8 @@ const history = require('connect-history-api-fallback');
 
 let port = 5000;
 
-app.use(express.static('public'));
 app.use(history());
+app.use(express.static('public'));
 app.use('/',indexRouter);
 
 app.listen(port,() => {
