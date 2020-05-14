@@ -12,7 +12,7 @@
           <tbody>
             <tr v-for="item in users" :key="item.name">
               <td>{{ item.name }}</td>
-              <td>{{ item.phoneNumber }}</td>
+              <td>{{ item.phoneNum }}</td>
             </tr>
           </tbody>
         </template>
@@ -32,7 +32,7 @@
           추가하기
         </span>
       </v-btn>
-      <v-dialog v-model="addDialog.show" persistent max-width="300px">
+      <v-dialog v-model="addDialog.show" persistent max-width="500px">
         <v-card>
           <v-card-title>
             <span class="headline">Add User</span>
@@ -90,7 +90,7 @@
       </v-snackbar>
     </v-col>
   </v-row>
-  
+
 </template>
 
 <script>
@@ -98,7 +98,10 @@ import axios from "axios";
 export default {
   data() {
     return {
-      users: "",
+      users: {
+        name : "",
+        phoneNum : ""
+      },
       snackbar: false,
       timeout: 2000,
       text: "",
@@ -118,6 +121,16 @@ export default {
   async created() {
   },
   methods: {
+    addUser(){
+      let user = this.addDialog;
+      this.$http.post('/api/adduser/', {
+        name : user.name,
+        phoneNum : user.phoneNum,
+        password : user.password,
+      })
+      .then(res =>console.log(res))
+      .catch(err => console.log(err))
+    }
   }
 };
 </script>

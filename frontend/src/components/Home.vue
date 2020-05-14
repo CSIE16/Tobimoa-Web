@@ -6,7 +6,7 @@
           :src="require('../assets/map.png')"
           class="my-3"
           contain
-          height="200"
+          height="45%"
         />
       </v-col>
     </v-row>
