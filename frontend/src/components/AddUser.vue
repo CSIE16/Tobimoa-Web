@@ -88,6 +88,7 @@
           name: user.name,
           phoneNum: user.phoneNum,
           password: user.password,
+          player: user.child,
         })
           .then(res => {
             console.log(res);

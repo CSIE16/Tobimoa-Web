@@ -13,7 +13,7 @@ const UserSchema = new mongoose.Schema({
     },
     Visited: {
         type : [Number],
-        default : 0,
+        default : [0,0,0,0,0,0,0,0,0,0]
     }
 });
 
