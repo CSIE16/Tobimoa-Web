@@ -10,9 +10,9 @@
             </tr>
           </thead>
           <tbody>
-            <tr v-for="item in users" :key="item.name">
-              <td>{{ item.name }}</td>
-              <td>{{ item.phoneNum }}</td>
+            <tr v-for="item in users">
+              <td>{{ item.Name }}</td>
+              <td>{{ item.PhoneNum }}</td>
             </tr>
           </tbody>
         </template>
@@ -94,14 +94,10 @@
 </template>
 
 <script>
-import axios from "axios";
 export default {
   data() {
     return {
-      users: {
-        name : "",
-        phoneNum : ""
-      },
+      users: [],
       snackbar: false,
       timeout: 2000,
       text: "",
@@ -119,6 +115,9 @@ export default {
     };
   },
   async created() {
+    this.$http.get('/api/userlist')
+    .then(res => this.users = res.data)
+    .catch(err => console.log(err))
   },
   methods: {
     addUser(){
@@ -128,7 +127,11 @@ export default {
         phoneNum : user.phoneNum,
         password : user.password,
       })
-      .then(res =>console.log(res))
+      .then(res =>{
+        console.log(res);
+        alert("등록을 완료하였습니다.");
+        window.location.reload(true);
+      })
       .catch(err => console.log(err))
     }
   }

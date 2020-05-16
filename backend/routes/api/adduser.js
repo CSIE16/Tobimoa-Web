@@ -38,7 +38,7 @@ router.post('/', (req, res, next) => {
                         .save()
                         .then(result => {
                             console.log(result);
-                            res.send('<script type="text/javascript">alert("등록을 완료하였습니다!!"); window.location="/user"; </script>');
+                            res.send(true);
                         })
                         .catch(err => console.log(err));
                 }
