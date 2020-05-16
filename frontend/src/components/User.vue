@@ -64,6 +64,7 @@ export default {
         name: "",
         phoneNum: "",
         password: "",
+        child : [],
         show: false,
         show1: false,
         rules: {
