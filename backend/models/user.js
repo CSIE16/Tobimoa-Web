@@ -4,8 +4,8 @@ const UserSchema = new mongoose.Schema({
     Name: {type: String, required: true , trim : true},
     SerialNum: {type: String, required: true},
     Location: {
-        latitude: {type: String , default : 0},
-        longitude: {type: String, default : 0}
+        latitude: {type: String},
+        longitude: {type: String}
     },
     StampCnt: {
         hidden: {type: Number, default : 0},

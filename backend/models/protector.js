@@ -8,4 +8,17 @@ const ProtectorSchema = new mongoose.Schema({
     Child : {type : [User.schema]}
 });
 
+ProtectorSchema.methods.addstamp = async function(req){
+    await this.Child.forEach(user =>{
+        if(user.SerialNum == req.UID){
+            if(user.Visited[req.ReaderID] == 0){
+                if(req.ReaderID == 0) user.StampCnt.hidden++;
+                else user.StampCnt.normal++;
+                user.Visited.set(req.ReaderID,1);
+            }
+        }
+    });
+    return this.save();
+}
+
 module.exports = mongoose.model("Protector", ProtectorSchema);
