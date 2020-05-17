@@ -12,8 +12,8 @@ router.post("/", async (req,res,next)=>{
         })
 
     if(pt) {
-        await pt.addstamp(req.body);
-        res.json(pt);
+        let ret = await pt.addstamp(req.body);
+        res.json({"StampCnt" : ret});
     }
     else res.json({"message" : "User Not Found"});
 });
