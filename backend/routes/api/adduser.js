@@ -20,19 +20,12 @@ router.post('/', (req, res, next) => {
                     });
 
                     for (let i in req.body.player) {
-                        console.log("player : " + i + ' ' +  req.body.player[i].name + ' ' + req.body.player[i].serial);
                         const user = new User({
                             _id : new mongoose.Types.ObjectId(),
                             Name: req.body.player[i].name,
-                            SerialNum: parseInt(req.body.player[i].serial)
+                            SerialNum: req.body.player[i].serial
                         });
-                        console.log(user);
-                        user
-                            .save()
-                            .then(result => {
-                                console.log(result);
-                            })
-                            .catch(err => console.log(err));
+
                         protector.Child.push(user);
                     }
                     protector

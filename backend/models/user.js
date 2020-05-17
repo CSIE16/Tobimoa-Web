@@ -2,10 +2,10 @@ const mongoose = require("mongoose");
 
 const UserSchema = new mongoose.Schema({
     Name: {type: String, required: true , trim : true},
-    SerialNum: {type: Number, required: true},
+    SerialNum: {type: String, required: true},
     Location: {
-        latitude: {type: Number},
-        longitude: {type: Number}
+        latitude: {type: String , default : 0},
+        longitude: {type: String, default : 0}
     },
     StampCnt: {
         hidden: {type: Number, default : 0},
