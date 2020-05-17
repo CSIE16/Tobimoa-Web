@@ -1,9 +1,15 @@
 const express = require("express");
 const app = express();
+const fs = require("fs");
+const path = require("path");
 
-app.use("/userlist", require("./api/userlist"));
-app.use("/adduser", require("./api/adduser"));
-app.use("/update_location", require("./api/update_location"));
-app.use("/addstamp", require("./api/addstamp"));
+const Index = path.basename(__filename);
+
+fs.readdirSync(__dirname + '/api')
+    .filter(
+        file => file !== Index)
+    .forEach(route=>{
+        app.use(`/${route.split('.')[0]}`, require(`./api/${route}`));
+    })
 
 module.exports = app;
