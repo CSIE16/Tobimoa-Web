@@ -7,10 +7,8 @@ router.post("/", async (req, res, next) => {
         {PhoneNum: req.body.PhoneNum, Password : req.body.Password},
         (err, result) => {
             if (err) throw err;
-            else if(result)
-                return res.json({Name: result.Name, PhoneNum: result.PhoneNum, Password : result.Password});
+            return res.json(result ? result : {error : "Check your PhoneNumber or Password"});
         })
-    res.json({err : "Check your PhoneNumber or Password"});
 })
 
 module.exports = router;
