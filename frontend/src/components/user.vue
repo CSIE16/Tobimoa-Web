@@ -13,7 +13,11 @@
           <tr v-for="item in users">
             <td>{{ item.Name }}</td>
             <td>{{ item.PhoneNum }}</td>
-            <td style="text-align : right" ><v-btn @click="deletebox.show = true, deletebox.item = item">
+            <td style="text-align : right" >
+              <v-btn
+                @click="deletebox.show = true,
+                deletebox.item = item,
+                deletebox.msg='사용자의 정보를 삭제합니다.'" >
               <v-icon>clear</v-icon>
             </v-btn></td>
           </tr>
@@ -28,6 +32,15 @@
         outlined
         color="primary">
         추가하기
+      </v-btn>
+      <v-btn
+        class="ma-3"
+        @click="deletebox.show = true,
+        deletebox.msg='모든 사용자의 정보를 삭제합니다.',
+        deletebox.item=''"
+        outlined
+        color="primary">
+        모든 데이터 삭제
       </v-btn>
 
       <AddUser :addDialog="addDialog"/>
@@ -73,22 +86,36 @@
         deletebox : {
           item : {Name : "", PhoneNum : ""},
           show : false,
+          msg : "",
           accept : false,
         }
       };
     },
     methods : {
       deleteOne(item){
-        this.$http.delete('/delete/user', item)
+        this.$http.delete('/api/delete/user', item)
           .then(res => {
             alert("삭제되었습니다.")
             window.location('/user')
           })
           .catch(err => console.log(err))
       },
+      deleteAll(){
+        this.$http.delete('/api/delete/all')
+        .then(res=>{
+          alert("삭제되었습니다.")
+          window.location('/user')
+        })
+      },
       isaccept(item, yes){
-        if(yes) this.deleteOne(item)
-        else this.deletebox.show = false
+        if(item="") {
+          if(yes)  this.deleteAll()
+          else this.deletebox.show = true
+        }
+        else {
+          if (yes) this.deleteOne(item)
+          else this.deletebox.show = false
+        }
       }
     },
     async created() {
