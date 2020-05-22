@@ -87,7 +87,7 @@
           .catch(err => console.log(err))
       },
       isaccept(item, yes){
-        if(yes) deleteOne(item)
+        if(yes) this.deleteOne(item)
         else this.deletebox.show = false
       }
     },
