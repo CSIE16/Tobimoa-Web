@@ -1,6 +1,5 @@
 const express = require("express");
 const router = express.Router();
-const path = require("path");
 const mongoose = require("mongoose");
 const User = require("../../models/user");
 const Protector = require("../../models/protector");
@@ -20,18 +19,13 @@ router.post('/', (req, res, next) => {
                         Password: req.body.password,
                     });
 
-                    for (var i in req.body.player) {
+                    for (let i in req.body.player) {
                         const user = new User({
                             _id : new mongoose.Types.ObjectId(),
-                            Name: req.body.player[i].Name,
-                            SerialNum: req.body.player[i].SerialNum
+                            Name: req.body.player[i].name,
+                            SerialNum: req.body.player[i].serial
                         });
-                        user
-                            .save()
-                            .then(result => {
-                                console.log(result);
-                            })
-                            .catch(err => console.log(err));
+
                         protector.Child.push(user);
                     }
                     protector
