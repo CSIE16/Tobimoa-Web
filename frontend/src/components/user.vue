@@ -97,7 +97,7 @@
         .catch(err => console.log(err))
     },
     components: {
-      AddUser: () => import('./AddUser'),
+      AddUser: () => import('./cardbox/adduser'),
       isdelete: () => import('./cardbox/isdelete'),
     }
   };
