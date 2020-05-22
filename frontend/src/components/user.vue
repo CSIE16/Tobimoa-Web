@@ -93,7 +93,7 @@
     },
     methods : {
       deleteOne(item){
-        this.$http.delete('/api/delete/user', item)
+        this.$http.delete('/api/delete/user', {user : this.deletebox.item})
           .then(res => {
             alert("삭제되었습니다.")
             window.location('/user')
