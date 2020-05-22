@@ -18,7 +18,7 @@
         <v-btn
           color="green darken-1"
           text
-          @click="isaccept(deletebox.item, true)"
+          @click="isaccept(true)"
         >
           네!!
         </v-btn>
@@ -26,7 +26,7 @@
         <v-btn
           color="green darken-1"
           text
-          @click="isaccept(deletebox.item,  false)"
+          @click="isaccept(false)"
         >
           절대 안돼ㅐㅐ
         </v-btn>
@@ -39,8 +39,8 @@
   export default {
     props: ['deletebox'],
     methods : {
-      isaccept(item, yes){
-        this.$emit('isaccept', item, yes);
+      isaccept(yes){
+        this.$emit('isaccept', yes);
       }
     }
   }

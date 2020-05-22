@@ -16,7 +16,7 @@
             <td style="text-align : right" >
               <v-btn
                 @click="deletebox.show = true,
-                deletebox.item = item,
+                deletebox.item = {Name : item.Name, PhoneNum : item.PhoneNum},
                 deletebox.msg='사용자의 정보를 삭제합니다.'" >
                 <v-icon>clear</v-icon>
               </v-btn></td>
@@ -84,7 +84,7 @@
           }
         },
         deletebox : {
-          item : {Name : "", PhoneNum : ""},
+          item : "",
           show : false,
           msg : "",
           accept : false,
@@ -93,10 +93,10 @@
     },
     methods : {
       deleteOne(item){
-        this.$http.delete('/api/delete/user', {user : this.deletebox.item})
+        this.$http.delete('/api/delete/protector', {data : {pro : item}})
           .then(res => {
             alert("삭제되었습니다.")
-            window.location('/user')
+            window.location.reload(true)
           })
           .catch(err => console.log(err))
       },
@@ -107,13 +107,13 @@
             window.location('/user')
           })
       },
-      isaccept(item, yes){
-        if(item="") {
+      isaccept(yes){
+        if(this.deletebox.item=="") {
           if(yes)  this.deleteAll()
           else this.deletebox.show = true
         }
         else {
-          if (yes) this.deleteOne(item)
+          if (yes) this.deleteOne(this.deletebox.item)
           else this.deletebox.show = false
         }
       }
