@@ -80,7 +80,7 @@ export default {
     .catch(err => console.log(err))
   },
   components: {
-    AddUser: () => import('./AddUser'),
+    AddUser: () => import('./adduser'),
   }
 };
 </script>
