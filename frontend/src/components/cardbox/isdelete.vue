@@ -5,11 +5,11 @@
     max-width="290"
   >
     <v-card>
-      <v-card-title class="headline">삭제하시겠습니까?</v-card-title>
+      <v-card-title class="headline">정말 삭제하시겠습니까?</v-card-title>
 
       <v-card-text>
         <br/>
-        사용자의 정보를 삭제합니다.
+        {{deletebox.msg}}
       </v-card-text>
 
       <v-card-actions>
