@@ -104,7 +104,7 @@
         this.$http.delete('/api/delete/all')
           .then(res=>{
             alert("삭제되었습니다.")
-            window.location('/user')
+            window.location.reload(true)
           })
       },
       isaccept(yes){

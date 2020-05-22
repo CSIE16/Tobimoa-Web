@@ -13,4 +13,14 @@ router.delete('/protector', (req,res)=>{
     )
 })
 
+router.delete('/all', (req,res)=>{
+    Protector.deleteMany(
+        {},
+        (err,result)=>{
+            if(err) throw err
+            else res.send(true)
+        }
+    )
+})
+
 module.exports = router
