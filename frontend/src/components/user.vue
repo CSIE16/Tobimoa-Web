@@ -13,7 +13,7 @@
       >
         <template v-slot:top>
           <v-toolbar flat>
-            <v-toolbar-title>User list</v-toolbar-title>
+            <v-toolbar-title>사용자 목록</v-toolbar-title>
             <v-divider
               class="mx-4"
               inset
@@ -55,6 +55,12 @@
           <v-icon
             small
             class="mr-2"
+            @click="addDialog.show = true,
+                    addDialog.Name = item.Name,
+                    addDialog.PhoneNum = item.PhoneNum,
+                    addDialog.Password = item.Password,
+                    addDialog.msg = '수정',
+                    clone(addDialog.Child, item.Child)"
           >
             edit
           </v-icon>
@@ -71,7 +77,7 @@
     <v-col>
       <v-btn
         class="ma-3"
-        @click="addDialog.show = true"
+        @click="addDialog.show = true, addDialog.msg = '추가'"
         outlined
         color="primary">
         추가하기
@@ -86,7 +92,7 @@
         모든 데이터 삭제
       </v-btn>
 
-      <addUser :addDialog="addDialog"/>
+      <addUser :addDialog="addDialog" @addChild="addChild" @cancel="cancel"/>
       <isdelete :deletebox="deletebox" @isaccept="isaccept"/>
 
       <v-snackbar
@@ -110,15 +116,16 @@
   export default {
     data() {
       return {
-        users: [{Name: "aa", PhoneNum: "bb", listview: false}, {Name: "cc", PhoneNum: "dd", listview: false}],
+        users: [{Name: "aa", PhoneNum: "bb"}, {Name: "cc", PhoneNum: "dd"}],
         snackbar: false,
         timeout: 2000,
         text: "",
         addDialog: {
-          name: "",
-          phoneNum: "",
-          password: "",
-          child: [],
+          Name: "",
+          PhoneNum: "",
+          Password: "",
+          Child: [],
+          msg : "",
           show: false,
           show1: false,
           rules: {
@@ -173,6 +180,21 @@
           if (yes) this.deleteOne(this.deletebox.item)
           else this.deletebox.show = false
         }
+      },
+      addChild(){
+        this.addDialog.Child.push({Name: "", SerialNum: ""});
+      },
+      cancel(){
+        this.addDialog.Name = ""
+        this.addDialog.PhoneNum = ""
+        this.addDialog.Password = ""
+        this.addDialog.show = false;
+        this.addDialog.Child.splice(0,this.addDialog.Child.length);
+      },
+      async clone(a,b){
+        await b.forEach(i => {
+          a.push({Name : i.Name, SerialNum : i.SerialNum})
+        })
       }
     },
     async created() {
