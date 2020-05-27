@@ -2,7 +2,7 @@
   <v-dialog v-model="addDialog.show" persistent max-width="800px">
     <v-card>
       <v-card-title>
-        <span class="headline">사용자 {{this.addDialog.msg}}</span>
+        <span class="headline">사용자 {{addDialog.msg}}</span>
       </v-card-title>
       <v-card-text>
         <v-text-field
@@ -34,7 +34,7 @@
         <v-btn @click="addChild()">
           <v-icon>add</v-icon>
         </v-btn>
-            <v-row v-for="item in addDialog.Child">
+            <v-row v-for="item in addDialog.Child" :key="item.SerialNum">
               <v-col cols="12" md="6">
                 <v-text-field
                   v-model="item.Name"
@@ -58,10 +58,10 @@
             </v-row>
       </v-card-text>
       <v-card-text>
-        해당 항목을 {{this.addDialog.msg}} 하시겠습니까?
+        해당 항목을 {{addDialog.msg}} 하시겠습니까?
       </v-card-text>
       <v-card-actions>
-        <v-btn @click="addUser()" text color="success">{{this.addDialog.msg}}</v-btn>
+        <v-btn @click="addUser()" text color="success">{{addDialog.msg}}</v-btn>
         <v-btn @click="cancel()" text>취소</v-btn>
       </v-card-actions>
     </v-card>

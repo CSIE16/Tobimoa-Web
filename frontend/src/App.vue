@@ -8,17 +8,17 @@
       <v-list nav dense>
         <v-list-item-group
           active-class="blue--text text--lighten-1">
-          <v-list-item>
+          <v-list-item onclick="location.href='/'">
             <v-list-item-icon>
-              <v-icon>mdi-home</v-icon>
+              <v-icon>home</v-icon>
             </v-list-item-icon>
-            <v-list-item-title onclick="location.href='/'">Home</v-list-item-title>
+            <v-list-item-title>Home</v-list-item-title>
           </v-list-item>
-          <v-list-item>
+          <v-list-item  onclick="location.href='/user'">
             <v-list-item-icon>
-              <v-icon>mdi-account</v-icon>
+              <v-icon>account_box</v-icon>
             </v-list-item-icon>
-            <v-list-item-title onclick="location.href='/user'">Account</v-list-item-title>
+            <v-list-item-title>Account</v-list-item-title>
           </v-list-item>
         </v-list-item-group>
       </v-list>

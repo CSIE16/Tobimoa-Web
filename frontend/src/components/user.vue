@@ -6,7 +6,7 @@
         :items="users"
         :expanded.sync="expanded"
         :single-expand="singleExpand"
-        item-key="Name"
+        item-key="PhoneNum"
         show-expand
         class="elevation-1"
         :search="search"
