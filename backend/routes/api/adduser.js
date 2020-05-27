@@ -9,23 +9,36 @@ router.post('/', (req, res, next) => {
     Protector.find({PhoneNum: req.body.PhoneNum})
         .exec()
             .then(pt => {
-                if (pt.length >= 1)
-                    res.send('<script type="text/javascript">alert("이미 존재하는 아이디.");window.location="/user"; </script>');
+                if (pt.length >= 1) {
+                    pt[0].Name = req.body.Name
+                    pt[0].PhoneNum = req.body.PhoneNum
+                    pt[0].Password = req.body.Password
+                    for(let i = 0; i < pt[0].Child.length; i++){
+                        pt[0].Child[i].Name = req.body.player[i].Name
+                        pt[0].Child[i].SerialNum = req.body.player[i].SerialNum
+                    }
+                    pt[0]
+                        .save()
+                        .then(result=>{
+                            console.log(result)
+                            res.send(true)
+                        })
+                        .catch(err => console.log(err))
+                }
                 else {
                     const protector = new Protector({
                         _id : new mongoose.Types.ObjectId(),
-                        Name: req.body.name,
-                        PhoneNum: req.body.phoneNum,
-                        Password: req.body.password,
+                        Name: req.body.Name,
+                        PhoneNum: req.body.PhoneNum,
+                        Password: req.body.Password,
                     });
 
                     for (let i in req.body.player) {
                         const user = new User({
                             _id : new mongoose.Types.ObjectId(),
-                            Name: req.body.player[i].name,
-                            SerialNum: req.body.player[i].serial
+                            Name: req.body.player[i].Name,
+                            SerialNum: req.body.player[i].SerialNum
                         });
-
                         protector.Child.push(user);
                     }
                     protector
