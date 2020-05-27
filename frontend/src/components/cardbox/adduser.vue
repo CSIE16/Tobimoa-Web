@@ -58,7 +58,7 @@
             </v-row>
       </v-card-text>
       <v-card-text>
-        해당 항목을 {{this.addDialog.msg}} 하시겠습니까?
+        해당 항목을 {{addDialog.msg}} 하시겠습니까?
       </v-card-text>
       <v-card-actions>
         <v-btn @click="addUser()" text color="success">{{this.addDialog.msg}}</v-btn>
@@ -74,7 +74,21 @@
     props: ['addDialog'],
     methods: {
       async addUser() {
-        let user = this.addDialog;
+        const user = this.addDialog;
+        let list = [];
+        list = "hi";
+        const constList = [];
+        constList.push(1);
+  // TS
+        let cnt = 0;
+        let cnt: number = 0;
+        cnt = true; // TYPE ERROR!
+
+        const values = {
+          cnt: 0
+        }
+        values.cnt++;
+
         this.$http.post('/api/adduser/', {
           Name: user.Name,
           PhoneNum: user.PhoneNum,

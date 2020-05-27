@@ -18,7 +18,7 @@
         <v-btn
           color="green darken-1"
           text
-          @click="isaccept(true)"
+          @click="isAccept(true)"
         >
           네!!
         </v-btn>

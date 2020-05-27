@@ -4,8 +4,65 @@ const mongoose = require("mongoose");
 const User = require("../../models/user");
 const Protector = require("../../models/protector");
 
-router.post('/', (req, res, next) => {
+class Db {
+    constructor(db?) {
+        this.db = db || 'INIT DB'
+    }
+}
+    async get({phoneNum}) {
+        try{
+            const qparams = [phoneNum];
+        const SQL = `
+            SELECT *
+            FROM    dump
+            WHERE   phoneNum = ?
+        `;
+        const rows = this.db.read(SQL, qparams);
+        return rows && rows.length > 0 ? rows[0] : null;
+    } catch(error) {
+        console.error(error);
+        throw error;
+    }
+}
+;
+
+const service = new Service({});
+
+class Service {
+    constructor(mock?) {
+        this.mock = mock || t;
+    }
+    async get() {
+        try {
+            return true;
+        } catch(error) {
+            return false;
+        }
+    }
+}
+const service = async (params) => {
+try {
+    const param = {
+        ...params
+    }
+    const dbData = await Db.get(param);
+    if(dbData.id === 3) {
+        return true;
+    }
+
+    return false;
+} catch(error){
+    console.error(error);
+    return false;
+}
+}
+
+router.post('/', async (req, res, next) => {
     console.log(req.body);
+    const params = {...req.body};
+    const data = await service(params);
+    return res.send('good')
+
     Protector.find({PhoneNum: req.body.PhoneNum})
         .exec()
             .then(pt => {
