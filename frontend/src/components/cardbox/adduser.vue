@@ -34,7 +34,7 @@
         <v-btn @click="addChild()">
           <v-icon>add</v-icon>
         </v-btn>
-            <v-row v-for="item in addDialog.Child" :key="item.SerialNum">
+            <v-row v-for="item in addDialog.Child" :key="item">
               <v-col cols="12" md="6">
                 <v-text-field
                   v-model="item.Name"
