@@ -1,21 +1,9 @@
 
-## nodemon 설치
+## 실행 방법
 
 ```shell script
-npm install nodemon -g
-```
-
-## history 모드
-
-```shell script
-npm install connect-history-api-fallback
-```
-
-## etc
-
-```shell script
-npm install mongoose body-parser dotenv
-npm install --save axios
+npm install
+npm run dev
 ```
 
 ## .env setting
